@@ -2,7 +2,7 @@
 
 Add the following dependencies to your `package.json`:
 
-```
+```js
 {
   "name": "QmlWebProject",
   "devDependencies": {
@@ -14,7 +14,7 @@ Add the following dependencies to your `package.json`:
 ```
 
 ## Usage
-```
+```js
 var qml = require('gulp-qmlweb');
 var concat = require('gulp-concat');
 
