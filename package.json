@@ -1,0 +1,16 @@
+{
+  "name": "gulp-qmlweb",
+  "version": "0.0.1",
+  "description": "compiles QML source files for use with the qmlweb library",
+  "files": [
+    "index.js",
+    "qmlweb/src/qtcore/qml/QMLBinding.js",
+    "qmlweb/src/qtcore/qml/lib/parser.js",
+    "qmlweb/src/qtcore/qml/lib/jsparser.js"
+  ],
+  "dependencies": {
+    "event-stream": "",
+    "gulp-util": "~2.2.14",
+    "uglify-js": "^2.6.1"
+  }
+}
