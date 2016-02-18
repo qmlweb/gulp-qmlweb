@@ -2,6 +2,7 @@
   "name": "gulp-qmlweb",
   "version": "0.0.1",
   "description": "compiles QML source files for use with the qmlweb library",
+  "repository": "qmlweb/gulp-qmlweb",
   "files": [
     "index.js"
   ],
