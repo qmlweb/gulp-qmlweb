@@ -1,8 +1,8 @@
 var es = require('event-stream');
 var gutil = require('gulp-util');
-require(__dirname + '/qmlweb/src/qtcore/qml/QMLBinding.js');
-require(__dirname + '/qmlweb/src/qtcore/qml/lib/parser.js');
-require(__dirname + '/qmlweb/src/qtcore/qml/lib/jsparser.js');
+require('qmlweb/src/qtcore/qml/QMLBinding.js');
+require('qmlweb/src/qtcore/qml/lib/parser.js');
+require('qmlweb/src/qtcore/qml/lib/jsparser.js');
 
 module.exports = function (opt) {
   function modifyFile(file) {
