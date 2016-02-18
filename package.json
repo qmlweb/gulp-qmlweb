@@ -9,8 +9,8 @@
     "qmlweb/src/qtcore/qml/lib/jsparser.js"
   ],
   "dependencies": {
-    "event-stream": "",
-    "gulp-util": "~2.2.14",
+    "event-stream": "^3.3.2",
+    "gulp-util": "^3.0.7",
     "uglify-js": "^2.6.1"
   }
 }
