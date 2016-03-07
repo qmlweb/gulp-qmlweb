@@ -8,7 +8,7 @@ Add the following dependencies to your `package.json`:
   "devDependencies": {
     "gulp": "~3.6.0",
     "gulp-concat": "~2.1.7",
-    "gulp-qmlweb": "git://github.com/qmlweb/gulp-qmlweb.git"
+    "gulp-qmlweb": "~0.0.1"
   }
 }
 ```
