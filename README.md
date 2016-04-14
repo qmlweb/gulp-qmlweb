@@ -19,7 +19,7 @@ var qml = require('gulp-qmlweb');
 var concat = require('gulp-concat');
 
 gulp.task('scripts', function() {
-  return gulp.src(['qml/**/*.qml', 'qml/**/*.js'])
+  return gulp.src(['qml/**/*.qml', 'qml/**/*.js', 'qml/**/qmldir'])
     .pipe(qml())
     .pipe(concat('qrc.js'))
     .pipe(gulp.dest('./dist/'));
