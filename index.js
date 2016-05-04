@@ -1,8 +1,6 @@
 var es = require('event-stream');
 var gutil = require('gulp-util');
-require('qmlweb/src/qtcore/qml/QMLBinding.js');
-require('qmlweb/src/qtcore/qml/lib/parser.js');
-require('qmlweb/src/qtcore/qml/lib/jsparser.js');
+var qmlweb_parse = require('qmlweb-parser').qmlweb_parse;
 
 module.exports = function (opt) {
   function modifyFile(file) {
@@ -19,9 +17,9 @@ module.exports = function (opt) {
 
     try {
       if (file.path.match(/\.qml$/) != null)
-        data = qmlparse(str);
+        data = qmlweb_parse(str, qmlweb_parse.QMLDocument);
       else if (file.path.match(/\.js$/) != null)
-        data = jsparse(str);
+        data = qmlweb_parse(str, qmlweb_parse.JSResource);
       else
         data = str;
     } catch (err) {
