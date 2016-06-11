@@ -3,6 +3,10 @@ var gutil = require('gulp-util');
 var parser = require('qmlweb-parser');
 
 module.exports = function (opt) {
+  var pathFilter = opt.pathFilter || function(path) {
+    return path;
+  });
+
   function modifyFile(file) {
     if (file.isNull()) return this.emit('data', file);
     if (file.isStream()) return this.emit('error', new Error("gulp-qml: Streaming not supported"));
@@ -26,7 +30,7 @@ module.exports = function (opt) {
       return this.emit('error', new Error(file.path + ': ' + err));
     }
 
-    src = "qrc['"+path+"'] = " + JSON.stringify(data) + ';';
+    src = "qrc['" + pathFilter(path) + "'] = " + JSON.stringify(data) + ';';
 
     file.contents = new Buffer(src);
     file.path = dest;
