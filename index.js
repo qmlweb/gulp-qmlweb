@@ -17,7 +17,7 @@ module.exports = function (opt) {
 
     try {
       if (file.path.match(/\.qml$/) != null)
-        data = parser.qmlweb_parse(str, qmlweb_parse.QMLDocument);
+        data = parser.qmlweb_parse(str, parser.qmlweb_parse.QMLDocument);
       else if (file.path.match(/\.js$/) != null)
         data = parser.qmlweb_jsparse(str);
       else
