@@ -5,7 +5,7 @@ var parser = require('qmlweb-parser');
 module.exports = function (opt) {
   var pathFilter = opt.pathFilter || function(path) {
     return path;
-  });
+  };
 
   function modifyFile(file) {
     if (file.isNull()) return this.emit('data', file);
