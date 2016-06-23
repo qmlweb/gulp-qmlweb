@@ -3,6 +3,7 @@ var gutil = require('gulp-util');
 var parser = require('qmlweb-parser');
 
 module.exports = function (opt) {
+  opt = opt || {};
   var pathFilter = opt.pathFilter || function(path) {
     return path;
   };
