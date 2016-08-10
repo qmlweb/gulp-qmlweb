@@ -31,7 +31,7 @@ module.exports = function (opt) {
       return this.emit('error', new Error(file.path + ': ' + err));
     }
 
-    src = "qrc['" + pathFilter(path) + "'] = " + JSON.stringify(data) + ';';
+    src = "QmlWeb.qrc['" + pathFilter(path) + "'] = " + JSON.stringify(data) + ';';
 
     file.contents = new Buffer(src);
     file.path = dest;
