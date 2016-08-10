@@ -25,9 +25,13 @@ Add the following dependencies to your `package.json`:
 var qml = require('gulp-qmlweb');
 var concat = require('gulp-concat');
 
+function myPathFilter(path) {
+    return "/mynamespace/" + path;
+}
+
 gulp.task('scripts', function() {
   return gulp.src(['qml/**/*.qml', 'qml/**/*.js', 'qml/**/qmldir'])
-    .pipe(qml())
+    .pipe(qml({pathFilter: myPathFilter}))
     .pipe(concat('qrc.js'))
     .pipe(gulp.dest('./dist/'));
 });
