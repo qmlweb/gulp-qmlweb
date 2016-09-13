@@ -18,7 +18,11 @@ module.exports = function (opt) {
     var dest     = gutil.replaceExtension(file.path, ".js");
     var gulpPath = __dirname.split('/');
         gulpPath = gulpPath.splice(0, gulpPath.length - 2).join('/') + '/';
-    var path     = file.path.substr(gulpPath.length, file.path.length);
+    var path     = file.path;
+
+    if (file.path.indexOf(gulpPath) === 0) {
+      path = path.substr(gulpPath.length, path.length);
+    }
 
     try {
       if (file.path.match(/\.qml$/) != null)
