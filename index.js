@@ -1,5 +1,5 @@
 var es = require('event-stream');
-var gutil = require('gulp-util');
+var replaceExt = require('replace-ext');
 var parser = require('qmlweb-parser');
 
 module.exports = function (opt) {
@@ -15,7 +15,7 @@ module.exports = function (opt) {
     var data;
     var src;
     var str      = file.contents.toString('utf8');
-    var dest     = gutil.replaceExtension(file.path, ".js");
+    var dest     = replaceExt(file.path, ".js");
     var gulpPath = __dirname.split('/');
         gulpPath = gulpPath.splice(0, gulpPath.length - 2).join('/') + '/';
     var path     = file.path;
