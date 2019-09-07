@@ -9,9 +9,9 @@
     "index.js"
   ],
   "dependencies": {
-    "event-stream": "=3.3.4",
-    "qmlweb-parser": "^0.2.0",
-    "replace-ext": "^1.0.0",
+    "event-stream": "^3.3.2",
+    "gulp-util": "^3.0.7",
+    "qmlweb-parser": "^0.3.0",
     "uglify-js": "^2.6.1"
   }
 }
