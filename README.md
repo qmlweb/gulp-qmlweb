@@ -13,20 +13,24 @@ Add the following dependencies to your `package.json`:
 {
   "name": "QmlWebProject",
   "devDependencies": {
-    "gulp": "~3.6.0",
-    "gulp-concat": "~2.1.7",
+    "gulp": "~4.0.2",
+    "gulp-concat": "~2.6.1",
     "gulp-qmlweb": "~0.0.7"
   }
 }
 ```
 
 ## Usage
+
+Set up `gulpfile.js` in your project's root folder:
+
 ```js
+var gulp = require('gulp');
 var qml = require('gulp-qmlweb');
 var concat = require('gulp-concat');
 
 function myPathFilter(path) {
-    return "/mynamespace/" + path;
+  return "/mynamespace/" + path;
 }
 
 gulp.task('scripts', function() {
@@ -35,6 +39,26 @@ gulp.task('scripts', function() {
     .pipe(concat('qrc.js'))
     .pipe(gulp.dest('./dist/'));
 });
+
+gulp.task('default', gulp.series('scripts'));
 ```
 
-This will compile all your QML sources (qml and javascript) and concatenate them in the `/dist/qrc.js` file.
+Now, running `npx gulp` will compile all your QML sources (qml and javascript) and concatenate them in the `/dist/qrc.js` file.
+
+### Basic setup
+
+Include the `qrc.js` file and `qmlweb.js` file from the `qmlweb` package to get your application up and running.
+
+Note that the path to files included from `qrc.js` must be preppended with the `qrc:/` scheme.
+
+```html
+<html>
+  <head>
+    <title>Gulp-powered QmlWeb App</title>
+    <script src="dist/qrc.js"></script>
+    <script src="dist/qmlweb.js"></script>
+  </head>
+  <body data-qml="qrc:/mynamespace/qml/main.qml">
+  </body>
+</html>
+```
