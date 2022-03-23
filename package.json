@@ -1,7 +1,7 @@
 {
   "name": "gulp-qmlweb",
-  "version": "0.0.7",
-  "description": "compiles QML source files for use with the qmlweb library",
+  "version": "0.1.0",
+  "description": "compiles Qt resource files for use with the qmlweb library",
   "repository": "qmlweb/gulp-qmlweb",
   "files": [
     "AUTHORS",
@@ -9,9 +9,11 @@
     "index.js"
   ],
   "dependencies": {
-    "event-stream": "^3.3.2",
     "gulp-util": "^3.0.7",
+    "mime": "^3.0.0",
     "qmlweb-parser": "^0.3.0",
-    "uglify-js": "^2.6.1"
+    "through2": "^4.0.2",
+    "uglify-js": "^2.6.1",
+    "xml2js": "^0.4.23"
   }
 }

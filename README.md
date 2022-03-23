@@ -12,29 +12,31 @@ Add the following dependencies to your `package.json`:
 ```js
 {
   "name": "QmlWebProject",
+  "scripts": {
+    "rcc": "gulp rcc"
+  },
   "devDependencies": {
     "gulp": "~3.6.0",
-    "gulp-concat": "~2.1.7",
-    "gulp-qmlweb": "~0.0.7"
+    "gulp-qmlweb": "~0.1.0"
   }
 }
 ```
 
 ## Usage
 ```js
-var qml = require('gulp-qmlweb');
-var concat = require('gulp-concat');
+var gulp = require('gulp');
+var qrc = require('gulp-qmlweb');
 
-function myPathFilter(path) {
-    return "/mynamespace/" + path;
-}
+gulp.watch(['qml/**/*.qml', 'qml/**/*.js', 'qml/**/qmldir'], ['rcc']);
 
-gulp.task('scripts', function() {
-  return gulp.src(['qml/**/*.qml', 'qml/**/*.js', 'qml/**/qmldir'])
-    .pipe(qml({pathFilter: myPathFilter}))
-    .pipe(concat('qrc.js'))
+gulp.task('rcc', function() {
+  return gulp.src('resources.qrc')
+    .pipe(qrc())
     .pipe(gulp.dest('./dist/'));
 });
 ```
 
-This will compile all your QML sources (qml and javascript) and concatenate them in the `/dist/qrc.js` file.
+Running `npm run rcc` will parse your Qt resource file, and generate a `dist/qrc.js` file.
+Including this file in your application build will make all the registered resources available to QmlWeb
+through `QmlWeb.qrc`, allowing you to use QML imports, or loading files (such as pictures) using the
+`qrc:/` scheme.
