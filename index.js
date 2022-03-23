@@ -35,6 +35,18 @@ function dumpResource(root, filepath) {
   });
 }
 
+function addToQrc(qrc, directory, prefix, file) {
+  var filepath = file._ ? file._ : file;
+  var alias = file.$ && file.$.alias ? file.$.alias : filepath;
+  var rcpath = prefix + '/' + alias;
+
+  rcpath = rcpath.replace(/^\/+/, '');
+  rcpath = rcpath.replace(/([^:]\/)\/+/g, "$1");
+  return dumpResource(directory, filepath).then(function(result) {
+    qrc[rcpath] = result;
+  });
+}
+
 function generateQrcFromString(data, directory) {
   return new Promise(function(resolve, reject) {
     xmlToJs.parseString(data, function(err, result) {
@@ -46,17 +58,8 @@ function generateQrcFromString(data, directory) {
         var prefix = resourceList.$.prefix;
         var files = resourceList.file;
 
-        for (var file of files) {
-          var filepath = file._ ? file._ : file;
-          var alias = file.$ && file.$.alias ? file.$.alias : filepath;
-          var rcpath = prefix + '/' + alias;
-
-          rcpath = rcpath.replace(/^\/+/, '');
-          rcpath = rcpath.replace(/([^:]\/)\/+/g, "$1");
-          tasks.push(dumpResource(directory, filepath).then(function(result) {
-            qrc[rcpath] = result;
-          }));
-        }
+        for (var file of files)
+          tasks.push(addToQrc(qrc, directory, prefix, file));
       }
       return Promise.all(tasks).then(function() {
         resolve(JSON.stringify(qrc));
