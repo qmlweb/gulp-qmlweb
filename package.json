@@ -9,7 +9,6 @@
     "index.js"
   ],
   "dependencies": {
-    "gulp-util": "^3.0.7",
     "mime": "^3.0.0",
     "qmlweb-parser": "^0.3.0",
     "through2": "^4.0.2",
