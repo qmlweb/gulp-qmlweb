@@ -1,25 +1,25 @@
 var through2 = require('through2');
 var filesystem = require('fs');
+var istextorbinary = require('istextorbinary');
 var xmlToJs = require('xml2js');
 var mime = require('mime');
 var parser = require('qmlweb-parser');
 
 function dumpResource(root, filepath) {
   return new Promise(function(resolve, reject) {
-    filesystem.readFile(root + '/' + filepath, function(err, str) {
+    filesystem.readFile(root + '/' + filepath, function(err, buffer) {
       var data = null;
       var mimetype = mime.getType(filepath);
+      var str = typeof buffer === "object" ? buffer.toString() : buffer;
 
-      if (typeof str === "object")
-        str = str.toString();
       if (typeof str === "string") {
         try {
           if (filepath.match(/\.qml$/) != null)
             data = parser.qmlweb_parse(str, parser.qmlweb_parse.QMLDocument);
           else if (filepath.match(/\.m?js$/) != null)
             data = parser.qmlweb_jsparse(str);
-          else if (mimetype && mimetype.startsWith("image/"))
-            data = "data:" + mimetype + ";base64," + Buffer.from(str).toString('base64');
+          else if (istextorbinary.isBinary(filepath, buffer))
+            data = "data:" + mimetype + ";base64," + buffer.toString('base64');
           else
             data = str;
           resolve(data);

@@ -9,6 +9,7 @@
     "index.js"
   ],
   "dependencies": {
+    "istextorbinary": "^6.0.0",
     "mime": "^3.0.0",
     "qmlweb-parser": "^0.3.0",
     "through2": "^4.0.2",
