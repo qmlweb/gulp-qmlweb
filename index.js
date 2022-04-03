@@ -78,22 +78,24 @@ function generateQrc(path) {
   });
 }
 
-module.exports = function() {
+module.exports = function(options) {
   function modifyFile(file, encoding, callback) {
-    if (file.isNull()) return this.emit('data', file);
+    if (file.isNull()) return this.emit("data", file);
     if (file.isStream()) return this.emit('error', new Error("gulp-qml: Streaming not supported"));
+    if (!options) options = {};
 
     var self      = this;
-    var directory = file.path.split('/').slice(0, -1).join('/');
-    var str       = file.contents.toString('utf8');
+    var directory = file.path.split("/").slice(0, -1).join("/");
+    var str       = file.contents.toString("utf8");
+    var src       = options.src || "QmlWeb.qrc = {{object}};";
 
     return generateQrcFromString(str, directory).then(function(result) {
-      file.contents = Buffer.from("QmlWeb.qrc=" + result + ';');
-      file.path = "qrc.js";
-      self.emit('data', file);
+      file.contents = Buffer.from(src.replace("{{object}}", result));
+      file.path = options.filename || "qrc.js";
+      self.emit("data", file);
       callback();
     }).catch(function(error) {
-      self.emit('error', new Error(file.path + ': ' + error));
+      self.emit("error", new Error(file.path + ": " + error));
       callback();
     });
   }
