@@ -1,6 +1,6 @@
 {
   "name": "gulp-qmlweb",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "compiles Qt resource files for use with the qmlweb library",
   "repository": "qmlweb/gulp-qmlweb",
   "files": [

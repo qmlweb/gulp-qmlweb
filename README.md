@@ -45,8 +45,6 @@ var sources = [
 ];
 var output = "./dist/";
 
-gulp.watch();
-
 gulp.task("rcc", function() {
   return gulp.src(qrcSource)
     .pipe(qrc())

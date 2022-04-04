@@ -87,7 +87,7 @@ module.exports = function(options) {
     var self      = this;
     var directory = file.path.split("/").slice(0, -1).join("/");
     var str       = file.contents.toString("utf8");
-    var src       = options.src || "QmlWeb.qrc = {{object}};";
+    var src       = options.src || "QmlWeb.QResource.registerResource({{object}});";
 
     return generateQrcFromString(str, directory).then(function(result) {
       file.contents = Buffer.from(src.replace("{{object}}", result));
